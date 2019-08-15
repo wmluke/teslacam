@@ -1,4 +1,4 @@
-#!/bin/node
+#!/usr/bin/env node
 
 /* eslint no-bitwise: 0 */
 /* eslint no-await-in-loop: 0 */
@@ -90,7 +90,7 @@ const copyLocal = async (imageNum) => {
 
   if (filesInPath) {
     const filesBeforeCopy = await countFilesInDirectory(BACKUP_DIR);
-    
+
     execSync(`touch ${BACKUP_DIR}/lock`, { bubbleError: true });
     execSync(`rsync -av ${teslacamPath}/* ${BACKUP_DIR}`, { bubbleError: true });
     execSync(`rm -rf ${teslacamPath}/*`, { bubbleError: true });
