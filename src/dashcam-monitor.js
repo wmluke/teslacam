@@ -65,17 +65,17 @@ const fixLocal = (imageNum) => {
 const countFilesInDirectory = async dirPath => (await getFiles(dirPath))
   .length;
 
-const removeErroneousVideos = async dirPath => (await getFiles(dirPath))
-  .filter(n => fs.existsSync(n))
-  .map((name) => {
-    const { size } = fs.statSync(name);
-    return { name, size };
-  })
-  .filter(({ size }) => size < 500000)
-  .forEach(({ name, size }) => {
-    console.log(`Video ${name} is ${size} bytes. Deleting file`);
-    execSync(`rm ${name}`);
-  });
+// const removeErroneousVideos = async dirPath => (await getFiles(dirPath))
+//   .filter(n => fs.existsSync(n))
+//   .map((name) => {
+//     const { size } = fs.statSync(name);
+//     return { name, size };
+//   })
+//   .filter(({ size }) => size < 500000)
+//   .forEach(({ name, size }) => {
+//     console.log(`Video ${name} is ${size} bytes. Deleting file`);
+//     execSync(`rm ${name}`);
+//   });
 
 const copyLocal = async (imageNum) => {
   console.log(
@@ -83,7 +83,7 @@ const copyLocal = async (imageNum) => {
   );
 
   const teslacamPath = `${IMAGE_MOUNT_POINT}/TeslaCam`;
-  await removeErroneousVideos(teslacamPath);
+  // await removeErroneousVideos(teslacamPath);
 
   const filesInPath = await countFilesInDirectory(teslacamPath);
   console.log(`Found ${filesInPath} files in ${teslacamPath}`);
@@ -146,7 +146,7 @@ const startup = async () => {
   console.log('Starting Tesla Sync script');
   unmount('All');
   unmountLocal(0);
-  await removeErroneousVideos(BACKUP_DIR);
+  // await removeErroneousVideos(BACKUP_DIR);
   await performSanityCheck();
 };
 
