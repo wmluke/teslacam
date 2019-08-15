@@ -46,4 +46,4 @@ app.use(errorhandling());
 app.use('/video/', express.static(BACKUP_DIR), serveIndex(BACKUP_DIR));
 
 app.get('/api/video', (req, res) => res.send({ videoFiles: getVideoFiles(BACKUP_DIR) }));
-server.listen(8080, () => console.log('Listening on port 8080!'));
+server.listen(8081, () => console.log('Listening on port 8081!'));

@@ -33,8 +33,8 @@ module.exports = {
     port: 3000,
     open: false,
     proxy: {
-      '/api': 'http://localhost:8080',
-      '/video': 'http://localhost:8080'
+      '/api': 'http://localhost:8081',
+      '/video': 'http://localhost:8081'
     }
   },
   plugins: [

@@ -13,7 +13,7 @@ import {
 const withSettingsSubscription = WrappedComponent => class extends Component {
         state = { data: [] };
 
-        socket = socketIOClient(':8080');
+        socket = socketIOClient(':8081');
 
         componentDidMount() {
           this.socket.on('services', this.onReceivedData);

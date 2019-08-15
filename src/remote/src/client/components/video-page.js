@@ -29,7 +29,7 @@ const withVideoSubscription = WrappedComponent => class extends Component {
     state = {data: []};
 
     componentDidMount() {
-        const socket = socketIOClient(':8080');
+        const socket = socketIOClient(':8081');
         socket.on('video', data => {
                 this.setState({data: data.filter((el, i) => i < 20)}); // Temporary limiting the number of videos until infinite scroll is implemented
             }
