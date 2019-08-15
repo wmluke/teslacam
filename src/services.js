@@ -1,34 +1,33 @@
 #!/usr/bin/node
 const fs = require('fs');
 const { execSync } = require('./common');
-const { HOME_PATH } = require('./../etc/config');
 
 // eslint-disable-next-line
 const [path, script, command] = process.argv;
 
 const getServices = dirPath => fs
   .readdirSync(dirPath, { withFileTypes: true })
-  .filter(f => f.isDirectory())
-  .map(({ name }) => `${dirPath}/${name}`);
+  .filter(f => !f.name.endsWith('.service'))
+  .map(({ name }) => name.replace('.service', ''));
 
 
 switch (command) {
   case 'start':
-    getServices('./services')
+    getServices('./systemd')
       .forEach((s) => {
-        execSync(`sudo svc -u ${HOME_PATH}/${s}`);
+        execSync(`sudo sysctrl start ${s}`);
       });
     break;
   case 'stop':
-    getServices('./services')
+    getServices('./systemd')
       .forEach((s) => {
-        execSync(`sudo svc -d ${HOME_PATH}/${s}`);
+        execSync(`sudo sysctrl stop ${s}`);
       });
     break;
   case 'status':
-    getServices('./services')
+    getServices('./systemd')
       .forEach((s) => {
-        execSync(`sudo svstat ${HOME_PATH}/${s}`);
+        execSync(`sudo sysctrl status ${s}`);
       });
     break;
   default:
