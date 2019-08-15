@@ -1,9 +1,10 @@
 [Unit]
-Description=Rotate Video
+Description=Teslacam Rotate Video
 After=network.target
 
 [Service]
-ExecStart=/home/pi/teslacam/src/rotate-video.js
+Environment=NODE_VERSION=10
+ExecStart=/home/pi/.nvm/nvm-exec /home/pi/teslacam/src/rotate-video.js
 WorkingDirectory=/home/pi/teslacam
 StandardOutput=inherit
 StandardError=inherit

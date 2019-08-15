@@ -1,9 +1,10 @@
 [Unit]
-Description=Dashcam Monitor
+Description=Teslacam Dashcam Monitor
 After=network.target
 
 [Service]
-ExecStart=/home/pi/teslacam/src/dashcam-monitor.js
+Environment=NODE_VERSION=10
+ExecStart=/home/pi/.nvm/nvm-exec /home/pi/teslacam/src/dashcam-monitor.js
 WorkingDirectory=/home/pi/teslacam
 StandardOutput=inherit
 StandardError=inherit
