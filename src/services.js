@@ -15,19 +15,19 @@ switch (command) {
   case 'start':
     getServices('./systemd')
       .forEach((s) => {
-        execSync(`sudo sysctrl start ${s}`);
+        execSync(`sudo systemctl start ${s}`);
       });
     break;
   case 'stop':
     getServices('./systemd')
       .forEach((s) => {
-        execSync(`sudo sysctrl stop ${s}`);
+        execSync(`sudo systemctl stop ${s}`);
       });
     break;
   case 'status':
     getServices('./systemd')
       .forEach((s) => {
-        execSync(`sudo sysctrl status ${s}`);
+        execSync(`sudo systemctl status ${s}`);
       });
     break;
   default:
